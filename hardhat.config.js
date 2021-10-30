@@ -1,6 +1,7 @@
 
 //import { createRequire } from "module"; // add the ability to construct the'require' method in js file
 //const require = createRequire(import.meta.url); // construct the require method 
+//require("hardhat/console.sol");
 require("@nomiclabs/hardhat-waffle");
 require("@nomiclabs/hardhat-ethers");
 require("@nomiclabs/hardhat-etherscan");
@@ -19,10 +20,18 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
 
 // You need to export an object to set up your config
 // Go to https://hardhat.org/config/ to learn more
-
+//
 /**
  * @type import('hardhat/config').HardhatUserConfig
  */
 module.exports = {
-  solidity: "0.8.4",
+  
+  networks: {
+    hardhat: {
+      forking:{
+        url: process.env.ALCHEMY_MAINET_RPC_URL,
+      },
+    }
+  },
 };
+
